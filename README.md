@@ -33,6 +33,10 @@ Installing RPi Camera
 sudo raspi-config
 ```
 * Select enable camera and hit Enter, Finish and it will reboot.
+* To turn red camera LED off: add "disable_camera_led=1" in the /boot/config.txt
+```
+sudo nano /boot/config.txt
+```
 * Show options
 ```
 raspistill 2>&1 | less
