@@ -78,7 +78,7 @@ DATE=$(date +"%Y-%m-%d_%H%M")
 
 # raspistill --nopreview -w 259 -h 194 -o /home/pi/camera/$DATE.jpg
 # raspistill --nopreview -o /home/pi/camera/$DATE.jpg
-raspistill --nopreview -w 518 -h 388 -o /home/pi/camera/$DATE.jpg
+raspistill --nopreview -w 518 -h 388 -vf -hf -o /home/pi/camera/$DATE.jpg
 
 rm /home/pi/camera/index.html  
 printf "<html>\n<head></head>\n<body>\n" >> /home/pi/camera/index.html  
