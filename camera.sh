@@ -2,7 +2,7 @@
 
 # echo "test" | mail -a camera/2016-06-24_1018.jpg -s TEST haig.djambazian@gmail.com
 
-N=100;
+N=50;
 DATE=$(date +"%Y-%m-%d_%H%M")
 
 # max image size 2592 x 1944
@@ -28,7 +28,7 @@ printf "<body>\n" >> $HTML
 
 printf "Last $N Minutes shown - Time now: $DATE<br>\n" >> $HTML
 
-img=$(ls -rt /home/pi/camera/*.jpg | head -n 1)
+img=$(ls -rt /home/pi/camera/*.jpg | tail -n 1)
 printf "<img id=\"mainimg\" width=\"900\" src=\"$(basename $img)\"><br>\n" >> $HTML
 
 printf "<br>\n" >> $HTML
@@ -36,7 +36,7 @@ printf "<br>\n" >> $HTML
 printf "<br>\n" >> $HTML
 
 printf "<div>\n" >> $HTML
-for img in $(ls -rt /home/pi/camera/*.jpg | head -n $N); do
+for img in $(ls -rt /home/pi/camera/*.jpg | tail -n $N); do
   printf "<img src=\"$(basename $img)\" /><br>\n" >> $HTML
 done
 printf "</div>\n" >> $HTML
