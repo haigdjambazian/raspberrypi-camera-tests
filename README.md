@@ -44,15 +44,24 @@ raspistill 2>&1 | less
 * Capture a photo (max size is 2592 x 1944)
 ```
 raspistill -o cam.jpg
-
-DATE=$(date +"%Y-%m-%d_%H%M")
-raspistill --nopreview  -h 194 -w 259 -o /home/pi/camera/$DATE.jpg
+raspistill --nopreview  -h 194 -w 259 -o /home/pi/camera/cam.jpg
 ```
-* setup cron job
+* setup cron job, starts nano editor
 ```
 crontab -e
 ```
-* Put this text in the file with nano, the cron job will start
+* Install web server
+```
+sudo apt-get update 
+sudo apt-get install apache2 -y
+sudo apt-get install php5 libapache2-mod-php5 -y
+```
+* Script to copy to webserver: camera.sh, put it in the pi user home
+```
+cd
+
+```
+* Put this text in the file and save, the cron job will start
 ```
 * * * * * /home/pi/camera.sh 2>&1
 ```
@@ -61,41 +70,6 @@ crontab -e
 raspivid -o vid.h264 --timeout 5000
 raspivid -o vid.mpeg --timeout 5000 --codec MJPEG
 ```
-
-Install web server
-------------------
-```
-sudo apt-get update 
-sudo apt-get install apache2 -y
-sudo apt-get install php5 libapache2-mod-php5 -y
-```
-
-Script to copy to webserver
----------------------------
-* Create the camera.sh file (contents below) and the ~/camera directory
-```
-#!/bin/bash
-
-DATE=$(date +"%Y-%m-%d_%H%M")
-
-# max image size 2592 x 1944
-
-# raspistill --nopreview -w 259 -h 194 -o /home/pi/camera/$DATE.jpg
-# raspistill --nopreview -o /home/pi/camera/$DATE.jpg
-raspistill --nopreview -w 518 -h 388 -vf -hf -o /home/pi/camera/$DATE.jpg
-
-rm /home/pi/camera/index.html  
-printf "<html>\n<head></head>\n<body>\n" >> /home/pi/camera/index.html  
-printf "Last 10 Minutes shown - Time now: $DATE<br>\n" >> /home/pi/camera/index.html  
-
-for img in $(ls -t /home/pi/camera/*.jpg | head -n 10); do
-  printf "<img src=\"$(basename $img)\" width=\"900\">\n" >> /home/pi/camera/index.html  
-done
-printf "</body>\n</html>\n" >> /home/pi/camera/index.html  
-
-sudo cp -r /home/pi/camera /var/www/html/
-```
-* cron job is already working (see above)
 
 Packages to send email (SSMTP)
 ----------------------
