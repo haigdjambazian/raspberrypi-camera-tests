@@ -59,13 +59,14 @@ sudo apt-get install php5 libapache2-mod-php5 -y
 * Script to copy to webserver: camera.sh, put it in the pi user home
 ```
 cd
-
+wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/camera.sh
+wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/loopscript.js
 ```
-* Put this text in the file and save, the cron job will start
+* Put the text below in the file and save, the cron job will start and run camera.sh every minute
 ```
 * * * * * /home/pi/camera.sh 2>&1
 ```
-* Alternatively these make videos
+* Alternatively these commands make videos
 ```
 raspivid -o vid.h264 --timeout 5000
 raspivid -o vid.mpeg --timeout 5000 --codec MJPEG
