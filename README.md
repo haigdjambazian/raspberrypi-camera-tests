@@ -46,9 +46,10 @@ raspistill 2>&1 | less
 raspistill -o cam.jpg
 raspistill --nopreview  -h 194 -w 259 -o /home/pi/camera/cam.jpg
 ```
-* setup cron job, starts nano editor
+* Alternatively these commands make videos
 ```
-crontab -e
+raspivid -o vid.h264 --timeout 5000
+raspivid -o vid.mpeg --timeout 5000 --codec MJPEG
 ```
 * Install web server
 ```
@@ -56,20 +57,19 @@ sudo apt-get update
 sudo apt-get install apache2 -y
 sudo apt-get install php5 libapache2-mod-php5 -y
 ```
-* Script to copy to webserver: camera.sh, put it in the pi user home
+* Script to copy to webserver: camera.sh, loopscript.js, put them in the pi home
 ```
 cd
 wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/camera.sh
 wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/loopscript.js
 ```
-* Put the text below in the file and save, the cron job will start and run camera.sh every minute
+* setup cron job, starts nano editor
+```
+crontab -e
+```
+* Put the text below in the cron settings file and save, the cron job will start and run camera.sh every minute
 ```
 * * * * * /home/pi/camera.sh 2>&1
-```
-* Alternatively these commands make videos
-```
-raspivid -o vid.h264 --timeout 5000
-raspivid -o vid.mpeg --timeout 5000 --codec MJPEG
 ```
 
 Packages to send email (SSMTP)
