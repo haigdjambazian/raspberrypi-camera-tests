@@ -62,6 +62,7 @@ sudo apt-get install php5 libapache2-mod-php5 -y
 cd
 wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/camera.sh
 wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/loopscript.js
+chmod 755 camera.sh
 ```
 * setup cron job, starts nano editor
 ```
