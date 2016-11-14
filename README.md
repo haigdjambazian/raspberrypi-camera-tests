@@ -123,3 +123,13 @@ sudo chfn -f "pi @ domotics" pi
 echo "sample text" | mail -s "Important subject" ANYRECIPIENT@gmail.com
 mpack -s "Photo" camera/2016-06-24_1257.jpg ANYRECIPIENT@gmail.com
 ```
+setting up a url name instead of a ip address
+---------------------------------------------
+
+```
+sudo apt-get install avahi-daemon
+```
+* http://raspberrypi.local/camera now works
+
+    
+
