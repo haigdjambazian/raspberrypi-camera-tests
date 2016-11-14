@@ -60,8 +60,8 @@ sudo apt-get install php5 libapache2-mod-php5 -y
 * Script to copy to webserver: camera.sh, loopscript.js, put them in the pi home
 ```
 cd
-wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/camera.sh
-wget https://github.com/haigdjambazian/raspberrypi-camera-tests/blob/master/loopscript.js
+wget https://raw.githubusercontent.com/haigdjambazian/raspberrypi-camera-tests/master/camera.sh
+wget https://raw.githubusercontent.com/haigdjambazian/raspberrypi-camera-tests/master/loopscript.js
 chmod 755 camera.sh
 ```
 * setup cron job, starts nano editor
